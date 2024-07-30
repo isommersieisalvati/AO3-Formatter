@@ -1,7 +1,6 @@
 document
-    .getElementById("apply")
+    .getElementById("incrsLineHeight")
     .addEventListener("click", () => {
-        let lineHeight = 10;
         console.log(
             "lineHeight adjusted"
         );
@@ -16,14 +15,7 @@ document
                     tabs[0].id,
                     {
                         action: "adjustLineHeight",
-                        lineHeight:
-                            lineHeight,
                     }
-                    // (response) => {
-                    //     console.log(
-                    //         response.status
-                    //     );
-                    // }
                 );
             }
         );
