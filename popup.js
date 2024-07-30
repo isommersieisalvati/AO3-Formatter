@@ -1,10 +1,8 @@
 document
-    .getElementById("incrsLineHeight")
+    .getElementById(
+        "increaseLineHeight"
+    )
     .addEventListener("click", () => {
-        console.log(
-            "lineHeight adjusted"
-        );
-
         chrome.tabs.query(
             {
                 active: true,
@@ -14,7 +12,66 @@ document
                 chrome.tabs.sendMessage(
                     tabs[0].id,
                     {
-                        action: "adjustLineHeight",
+                        action: "increaseLineHeight",
+                    }
+                );
+            }
+        );
+    });
+
+document
+    .getElementById(
+        "decreaseLineHeight"
+    )
+    .addEventListener("click", () => {
+        chrome.tabs.query(
+            {
+                active: true,
+                currentWindow: true,
+            },
+            (tabs) => {
+                chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {
+                        action: "decreaseLineHeight",
+                    }
+                );
+            }
+        );
+    });
+
+document
+    .getElementById("decreaseFont")
+    .addEventListener("click", () => {
+        chrome.tabs.query(
+            {
+                active: true,
+                currentWindow: true,
+            },
+            (tabs) => {
+                chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {
+                        action: "decreaseFont",
+                    }
+                );
+            }
+        );
+    });
+
+document
+    .getElementById("increaseFont")
+    .addEventListener("click", () => {
+        chrome.tabs.query(
+            {
+                active: true,
+                currentWindow: true,
+            },
+            (tabs) => {
+                chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    {
+                        action: "increaseFont",
                     }
                 );
             }
