@@ -1,3 +1,6 @@
+const lineHeight = "3em";
+const fontSize = 16;
+
 function injectCSS(css) {
     const style =
         document.createElement("style");
@@ -10,7 +13,7 @@ function injectCSS(css) {
 const css = `
     .userstuff p,
     .userstuff details {
-        line-height: 3em !important;
+        line-height: ${lineHeight} !important;
         }
     `;
 
