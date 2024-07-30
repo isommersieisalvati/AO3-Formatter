@@ -1,7 +1,7 @@
-const lineHeight = "3em";
-const fontSize = 16;
+let lineHeight = 10;
+let fontSize = 16;
 
-function injectCSS(css) {
+function increaseLineHeight(css) {
     const style =
         document.createElement("style");
     style.appendChild(
@@ -24,7 +24,8 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "adjustLineHeight"
         ) {
-            injectCSS(css);
+            lineHeight += 10;
+            increaseLineHeight(css);
             sendResponse({
                 status: "lineHeight adjusted",
             });
