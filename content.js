@@ -1,8 +1,18 @@
-// Function to adjust line height
-function adjustLineHeight(lineHeight) {
-    document.body.style.lineHeight =
-        lineHeight;
+function injectCSS(css) {
+    const style =
+        document.createElement("style");
+    style.appendChild(
+        document.createTextNode(css)
+    );
+    document.head.appendChild(style);
 }
+
+const css = `
+    .userstuff p,
+    .userstuff details {
+        line-height: 3em !important;
+        }
+    `;
 
 // Listen for messages from popup.js
 chrome.runtime.onMessage.addListener(
@@ -11,9 +21,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "adjustLineHeight"
         ) {
-            adjustLineHeight(
-                request.lineHeight
-            );
+            injectCSS(css);
             sendResponse({
                 status: "lineHeight adjusted",
             });
