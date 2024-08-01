@@ -1,29 +1,72 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>
+            Font Size and Line Height
+            Adjuster
+        </title>
         <style>
             body {
-                min-width: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                font-family: Arial,
+                    sans-serif;
+            }
+            .control-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 200px;
+            }
+            .control {
+                display: flex;
+                align-items: center;
+                margin: 10px;
+            }
+            .control button {
+                margin: 0 10px;
                 padding: 10px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .control span {
+                font-size: 16px;
+                margin: 0 10px;
             }
         </style>
     </head>
     <body>
-        <h3>AO3 Formatter</h3>
-        <button id="decreaseLineHeight">
-            -
-        </button>
-        <h4>Line Height</h4>
-        <button id="increaseLineHeight">
-            +
-        </button>
-        <button id="decreaseFont">
-            -
-        </button>
-        <h4>Font Size</h4>
-        <button id="increaseFont">
-            +
-        </button>
+        <div class="control-container">
+            <div class="control">
+                <button
+                    id="decreaseLineHeight"
+                >
+                    -
+                </button>
+                <span>Line Height</span>
+                <button
+                    id="increaseLineHeight"
+                >
+                    +
+                </button>
+            </div>
+            <div class="control">
+                <button
+                    id="decreaseFont"
+                >
+                    -
+                </button>
+                <span>Font Size</span>
+                <button
+                    id="increaseFont"
+                >
+                    +
+                </button>
+            </div>
+        </div>
         <script src="popup.js"></script>
     </body>
 </html>
