@@ -2,25 +2,18 @@ let lineHeight = 3;
 let fontSize = 100;
 
 function adjust(lineHeight, fontSize) {
-    // const style =
-    //     document.createElement("style");
-    // let css = `
-    // .userstuff p,
-    // .userstuff details {
-    //     line-height: ${lineHeight} !important;
-    //     font-size: ${fontSize}% !important;
-    //     }
-    // `;
-    // style.appendChild(
-    //     document.createTextNode(css)
-    // );
-    // document.head.appendChild(style);
     let element =
         document.querySelector(
             "#chapters"
         );
-    console.log(element);
     element.style.fontSize = "2em";
+
+    let childElements =
+        element.querySelectorAll("*");
+
+    childElements.forEach(function (e) {
+        e.style.lineHeight = "5em";
+    });
 }
 
 chrome.runtime.onMessage.addListener(
