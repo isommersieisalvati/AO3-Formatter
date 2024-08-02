@@ -1,20 +1,26 @@
-let lineHeight = 10;
-let fontSize = 16;
+let lineHeight = 3;
+let fontSize = 100;
 
 function adjust(lineHeight, fontSize) {
-    const style =
-        document.createElement("style");
-    let css = `
-    .userstuff p,
-    .userstuff details {
-        line-height: ${lineHeight} !important;
-        font-size: ${fontSize}px !important;
-        }
-    `;
-    style.appendChild(
-        document.createTextNode(css)
-    );
-    document.head.appendChild(style);
+    // const style =
+    //     document.createElement("style");
+    // let css = `
+    // .userstuff p,
+    // .userstuff details {
+    //     line-height: ${lineHeight} !important;
+    //     font-size: ${fontSize}% !important;
+    //     }
+    // `;
+    // style.appendChild(
+    //     document.createTextNode(css)
+    // );
+    // document.head.appendChild(style);
+    let element =
+        document.querySelector(
+            "#chapters"
+        );
+    console.log(element);
+    element.style.fontSize = "2em";
 }
 
 chrome.runtime.onMessage.addListener(
@@ -23,7 +29,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "increaseLineHeight"
         ) {
-            lineHeight += 10;
+            lineHeight += 2;
             adjust(
                 (lineHeight =
                     lineHeight),
@@ -42,7 +48,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "decreaseLineHeight"
         ) {
-            lineHeight -= 10;
+            lineHeight -= 2;
             adjust(
                 (lineHeight =
                     lineHeight),
@@ -61,7 +67,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "increaseFont"
         ) {
-            fontSize += 10;
+            fontSize *= 0.1;
             adjust(
                 (lineHeight =
                     lineHeight),
@@ -80,7 +86,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "increaseLineHeight"
         ) {
-            fontSize -= 10;
+            fontSize /= 0.1;
             adjust(
                 (lineHeight =
                     lineHeight),
