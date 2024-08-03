@@ -1,5 +1,6 @@
 let lineHeight = 1;
 let fontSize = 1;
+let isIndented = false;
 
 function adjust(lineHeight, fontSize) {
     let element =
@@ -15,6 +16,22 @@ function adjust(lineHeight, fontSize) {
     childElements.forEach(function (e) {
         e.style.lineHeight = lineHeight;
     });
+}
+
+function indentation() {
+    let element =
+        document.querySelector(
+            "#chapters"
+        );
+    if (isIndented) {
+        element.style.textIndent =
+            "0em";
+        isIndented = false;
+    } else {
+        element.style.textIndent =
+            "2em";
+        isIndented = true;
+    }
 }
 
 chrome.runtime.onMessage.addListener(
@@ -88,6 +105,19 @@ chrome.runtime.onMessage.addListener(
             );
             sendResponse({
                 status: "Font size decreased.",
+            });
+        }
+    }
+);
+
+chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => {
+        if (
+            request.action === "indent"
+        ) {
+            indentation();
+            sendResponse({
+                status: "lineHeight adjusted",
             });
         }
     }
