@@ -1,98 +1,44 @@
-document
-    .getElementById(
-        "increaseLineHeight"
-    )
-    .addEventListener("click", () => {
-        chrome.tabs.query(
-            {
-                active: true,
-                currentWindow: true,
-            },
-            (tabs) => {
-                chrome.tabs.sendMessage(
-                    tabs[0].id,
+function addClickListener(
+    buttonId,
+    action
+) {
+    document
+        .getElementById(buttonId)
+        .addEventListener(
+            "click",
+            () => {
+                chrome.tabs.query(
                     {
-                        action: "increaseLineHeight",
+                        active: true,
+                        currentWindow: true,
+                    },
+                    (tabs) => {
+                        chrome.tabs.sendMessage(
+                            tabs[0].id,
+                            {
+                                action,
+                            }
+                        );
                     }
                 );
             }
         );
-    });
+}
 
-document
-    .getElementById(
-        "decreaseLineHeight"
-    )
-    .addEventListener("click", () => {
-        chrome.tabs.query(
-            {
-                active: true,
-                currentWindow: true,
-            },
-            (tabs) => {
-                chrome.tabs.sendMessage(
-                    tabs[0].id,
-                    {
-                        action: "decreaseLineHeight",
-                    }
-                );
-            }
-        );
-    });
-
-document
-    .getElementById("decreaseFont")
-    .addEventListener("click", () => {
-        chrome.tabs.query(
-            {
-                active: true,
-                currentWindow: true,
-            },
-            (tabs) => {
-                chrome.tabs.sendMessage(
-                    tabs[0].id,
-                    {
-                        action: "decreaseFont",
-                    }
-                );
-            }
-        );
-    });
-
-document
-    .getElementById("increaseFont")
-    .addEventListener("click", () => {
-        chrome.tabs.query(
-            {
-                active: true,
-                currentWindow: true,
-            },
-            (tabs) => {
-                chrome.tabs.sendMessage(
-                    tabs[0].id,
-                    {
-                        action: "increaseFont",
-                    }
-                );
-            }
-        );
-    });
-
-document
-    .getElementById("indent")
-    .addEventListener("click", () => {
-        chrome.tabs.query(
-            {
-                active: true,
-                currentWindow: true,
-            },
-            (tabs) => {
-                chrome.tabs.sendMessage(
-                    tabs[0].id,
-                    {
-                        action: "indent",
-                    }
-                );
-            }
-        );
-    });
+addClickListener(
+    "increaseLineHeight",
+    "increaseLineHeight"
+);
+addClickListener(
+    "decreaseLineHeight",
+    "decreaseLineHeight"
+);
+addClickListener(
+    "decreaseFont",
+    "decreaseFont"
+);
+addClickListener(
+    "increaseFont",
+    "increaseFont"
+);
+addClickListener("indent", "indent");

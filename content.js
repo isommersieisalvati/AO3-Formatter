@@ -1,4 +1,4 @@
-let lineHeight = 1;
+let lineHeight = 1.125;
 let fontSize = 1;
 let isIndented = false;
 
@@ -37,88 +37,85 @@ function indentation() {
 chrome.runtime.onMessage.addListener(
     (request, sender, sendResponse) => {
         if (
-            request.action ===
-            "increaseLineHeight"
-        ) {
-            lineHeight += 0.5;
-            adjust(
-                (lineHeight =
-                    lineHeight),
-                (fontSize = fontSize)
-            );
-            sendResponse({
-                status: "lineHeight adjusted",
-            });
-        }
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    (request, sender, sendResponse) => {
-        if (
-            request.action ===
-            "decreaseLineHeight"
-        ) {
-            lineHeight -= 0.5;
-            adjust(
-                (lineHeight =
-                    lineHeight),
-                (fontSize = fontSize)
-            );
-            sendResponse({
-                status: "lineHeight adjusted",
-            });
-        }
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    (request, sender, sendResponse) => {
-        if (
-            request.action ===
-            "increaseFont"
-        ) {
-            fontSize *= 1.1;
-            adjust(
-                (lineHeight =
-                    lineHeight),
-                (fontSize = fontSize)
-            );
-            sendResponse({
-                status: "Font size increased.",
-            });
-        }
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    (request, sender, sendResponse) => {
-        if (
-            request.action ===
-            "decreaseFont"
-        ) {
-            fontSize *= 0.9;
-            adjust(
-                (lineHeight =
-                    lineHeight),
-                (fontSize = fontSize)
-            );
-            sendResponse({
-                status: "Font size decreased.",
-            });
-        }
-    }
-);
-
-chrome.runtime.onMessage.addListener(
-    (request, sender, sendResponse) => {
-        if (
             request.action === "indent"
         ) {
             indentation();
             sendResponse({
-                status: "lineHeight adjusted",
+                status: "Indented.",
             });
         }
     }
+);
+
+function handleAction(
+    action,
+    lineHeightAdjustment,
+    fontSizeMultiplier,
+    statusMessage
+) {
+    return (
+        request,
+        sender,
+        sendResponse
+    ) => {
+        if (request.action === action) {
+            if (
+                lineHeightAdjustment !==
+                undefined
+            ) {
+                lineHeight +=
+                    lineHeightAdjustment;
+            }
+            if (
+                fontSizeMultiplier !==
+                undefined
+            ) {
+                fontSize *=
+                    fontSizeMultiplier;
+            }
+            adjust(
+                lineHeight,
+                fontSize
+            );
+            sendResponse({
+                status: statusMessage,
+            });
+        }
+    };
+}
+
+chrome.runtime.onMessage.addListener(
+    handleAction(
+        "increaseLineHeight",
+        0.5,
+        undefined,
+        "Line height increased"
+    )
+);
+
+chrome.runtime.onMessage.addListener(
+    handleAction(
+        "decreaseLineHeight",
+        -0.5,
+        undefined,
+        "Line height decreased"
+    )
+);
+
+chrome.runtime.onMessage.addListener(
+    handleAction(
+        "increaseFont",
+        undefined,
+        1.1,
+        "Font size increased"
+    )
+);
+
+chrome.runtime.onMessage.addListener(
+    handleAction(
+        "decreaseFont",
+        undefined,
+        0.9,
+        "Font size decreased"
+    )
 );
