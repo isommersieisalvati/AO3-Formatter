@@ -1,18 +1,19 @@
-let lineHeight = 3;
-let fontSize = 100;
+let lineHeight = 1;
+let fontSize = 1;
 
 function adjust(lineHeight, fontSize) {
     let element =
         document.querySelector(
             "#chapters"
         );
-    element.style.fontSize = "2em";
+    element.style.fontSize =
+        fontSize + "em";
 
     let childElements =
         element.querySelectorAll("*");
 
     childElements.forEach(function (e) {
-        e.style.lineHeight = "5em";
+        e.style.lineHeight = lineHeight;
     });
 }
 
@@ -22,7 +23,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "increaseLineHeight"
         ) {
-            lineHeight += 2;
+            lineHeight += 0.5;
             adjust(
                 (lineHeight =
                     lineHeight),
@@ -41,7 +42,7 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "decreaseLineHeight"
         ) {
-            lineHeight -= 2;
+            lineHeight -= 0.5;
             adjust(
                 (lineHeight =
                     lineHeight),
@@ -60,14 +61,14 @@ chrome.runtime.onMessage.addListener(
             request.action ===
             "increaseFont"
         ) {
-            fontSize *= 0.1;
+            fontSize *= 1.1;
             adjust(
                 (lineHeight =
                     lineHeight),
                 (fontSize = fontSize)
             );
             sendResponse({
-                status: "lineHeight adjusted",
+                status: "Font size increased.",
             });
         }
     }
@@ -77,16 +78,16 @@ chrome.runtime.onMessage.addListener(
     (request, sender, sendResponse) => {
         if (
             request.action ===
-            "increaseLineHeight"
+            "decreaseFont"
         ) {
-            fontSize /= 0.1;
+            fontSize *= 0.9;
             adjust(
                 (lineHeight =
                     lineHeight),
                 (fontSize = fontSize)
             );
             sendResponse({
-                status: "lineHeight adjusted",
+                status: "Font size decreased.",
             });
         }
     }
