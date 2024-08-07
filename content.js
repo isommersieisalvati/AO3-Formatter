@@ -23,6 +23,10 @@ function indentation() {
         document.querySelector(
             "#chapters"
         );
+
+    let childElements =
+        element.querySelectorAll("*");
+
     if (isIndented) {
         element.style.textIndent =
             "0em";

@@ -1,42 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>
-            Font Size and Line Height
-            Adjuster
-        </title>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>AO3 Formatter</title>
         <style>
             body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100vh;
+                height: 200px;
                 margin: 0;
-                font-family: Arial,
-                    sans-serif;
+                font-family: "Roboto",
+                    Arial, sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
             }
+
             .control-container {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 200px;
+                padding: 20px;
+                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px
+                    rgba(0, 0, 0, 0.1);
             }
+
             .control {
                 display: flex;
                 align-items: center;
-                margin: 10px;
+                justify-content: space-between;
+                width: 100%;
+                margin: 10px 0;
             }
+
             .control button {
-                margin: 0 10px;
-                padding: 10px;
+                padding: 10px 15px;
                 font-size: 16px;
                 cursor: pointer;
+                border: none;
+                border-radius: 4px;
+                background-color: #fecea8;
+                color: #fff;
+                transition: background-color
+                    0.3s ease;
             }
+
+            .control button:hover {
+                background-color: #ff847c;
+            }
+
             .control span {
                 font-size: 16px;
-                margin: 0 10px;
+                width: 50px; /* Adjusted width for smaller spacing */
+                text-align: center; /* Center align the text within the span */
+            }
+
+            .control-container
+                button#indent {
+                margin-top: 10px;
+                width: calc(200px);
+                padding: 10px 15px;
+                font-size: 16px;
+                cursor: pointer;
+                border: none;
+                border-radius: 4px;
+                background-color: #fecea8;
+                color: #333;
+                transition: background-color
+                    0.3s ease;
+            }
+
+            .control-container
+                button#indent:hover {
+                background-color: #ff847c;
             }
         </style>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <div class="control-container">
@@ -46,7 +95,7 @@
                 >
                     -
                 </button>
-                <span>Line Height</span>
+                <span>行间距</span>
                 <button
                     id="increaseLineHeight"
                 >
@@ -59,7 +108,7 @@
                 >
                     -
                 </button>
-                <span>Font Size</span>
+                <span>字体</span>
                 <button
                     id="increaseFont"
                 >
@@ -67,7 +116,7 @@
                 </button>
             </div>
             <button id="indent">
-                Indent
+                段前缩进
             </button>
         </div>
         <script src="popup.js"></script>
