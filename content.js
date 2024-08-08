@@ -8,11 +8,6 @@ function adjust(
     fontSize,
     maxWidth
 ) {
-    // let element =
-    //     document.querySelector(
-    //         "#chapters"
-    //     );
-
     let element =
         document.querySelector(
             "#workskin"
