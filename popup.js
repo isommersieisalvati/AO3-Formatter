@@ -41,4 +41,12 @@ addClickListener(
     "increaseFont",
     "increaseFont"
 );
+addClickListener(
+    "decreaseMaxWidth",
+    "decreaseMaxWidth"
+);
+addClickListener(
+    "increaseMaxWidth",
+    "increaseMaxWidth"
+);
 addClickListener("indent", "indent");

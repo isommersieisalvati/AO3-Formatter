@@ -12,7 +12,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 200px;
+                height: 250px;
                 margin: 0;
                 font-family: "Roboto",
                     Arial, sans-serif;
@@ -58,14 +58,14 @@
 
             .control span {
                 font-size: 16px;
-                width: 50px; /* Adjusted width for smaller spacing */
+                width: 80px; /* Adjusted width for smaller spacing */
                 text-align: center; /* Center align the text within the span */
             }
 
             .control-container
                 button#indent {
                 margin-top: 10px;
-                width: calc(200px);
+                width: 200px;
                 padding: 10px 15px;
                 font-size: 16px;
                 cursor: pointer;
@@ -111,6 +111,19 @@
                 <span>字体</span>
                 <button
                     id="increaseFont"
+                >
+                    +
+                </button>
+            </div>
+            <div class="control">
+                <button
+                    id="decreaseMaxWidth"
+                >
+                    -
+                </button>
+                <span>最大宽度</span>
+                <button
+                    id="increaseMaxWidth"
                 >
                     +
                 </button>

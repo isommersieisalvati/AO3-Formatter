@@ -1,14 +1,32 @@
 let lineHeight = 1.125;
 let fontSize = 1;
+let maxWidth = 100;
 let isIndented = false;
 
-function adjust(lineHeight, fontSize) {
+function adjust(
+    lineHeight,
+    fontSize,
+    maxWidth
+) {
+    // let element =
+    //     document.querySelector(
+    //         "#chapters"
+    //     );
+
     let element =
         document.querySelector(
-            "#chapters"
+            "#workskin"
         );
+
+    document.querySelector(
+        "#chapters"
+    ).style.margin = "0 auto";
+
     element.style.fontSize =
         fontSize + "em";
+
+    element.style.maxWidth =
+        maxWidth + "%";
 
     let childElements =
         element.querySelectorAll("*");
@@ -23,9 +41,6 @@ function indentation() {
         document.querySelector(
             "#chapters"
         );
-
-    let childElements =
-        element.querySelectorAll("*");
 
     if (isIndented) {
         element.style.textIndent =
@@ -55,6 +70,7 @@ function handleAction(
     action,
     lineHeightAdjustment,
     fontSizeMultiplier,
+    maxWidthAdjustment,
     statusMessage
 ) {
     return (
@@ -77,9 +93,17 @@ function handleAction(
                 fontSize *=
                     fontSizeMultiplier;
             }
+            if (
+                maxWidthAdjustment !==
+                undefined
+            ) {
+                maxWidth +=
+                    maxWidthAdjustment;
+            }
             adjust(
                 lineHeight,
-                fontSize
+                fontSize,
+                maxWidth
             );
             sendResponse({
                 status: statusMessage,
@@ -93,6 +117,7 @@ chrome.runtime.onMessage.addListener(
         "increaseLineHeight",
         0.5,
         undefined,
+        undefined,
         "Line height increased"
     )
 );
@@ -101,6 +126,7 @@ chrome.runtime.onMessage.addListener(
     handleAction(
         "decreaseLineHeight",
         -0.5,
+        undefined,
         undefined,
         "Line height decreased"
     )
@@ -111,6 +137,7 @@ chrome.runtime.onMessage.addListener(
         "increaseFont",
         undefined,
         1.1,
+        undefined,
         "Font size increased"
     )
 );
@@ -120,6 +147,27 @@ chrome.runtime.onMessage.addListener(
         "decreaseFont",
         undefined,
         0.9,
+        undefined,
         "Font size decreased"
+    )
+);
+
+chrome.runtime.onMessage.addListener(
+    handleAction(
+        "increaseMaxWidth",
+        undefined,
+        undefined,
+        10,
+        "Max width increased"
+    )
+);
+
+chrome.runtime.onMessage.addListener(
+    handleAction(
+        "decreaseMaxWidth",
+        undefined,
+        undefined,
+        -10,
+        "Max width decreased"
     )
 );
