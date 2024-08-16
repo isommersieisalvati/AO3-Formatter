@@ -9,6 +9,8 @@
 
 ## Download
 
+Chrome web store: https://chromewebstore.google.com/detail/ao3-formatter/lgleopnbcleoicdipjplmbfckbcnpfmg?authuser=0&hl=zh-CN
+
 ## 功能
 
 -   调整行间距；
@@ -17,3 +19,5 @@
 -   调整段前缩进。
 
 ## 下载
+
+Chrome插件商店下载：https://chromewebstore.google.com/detail/ao3-formatter/lgleopnbcleoicdipjplmbfckbcnpfmg?authuser=0&hl=zh-CN
